@@ -110,16 +110,12 @@ open class Popover: UIView {
     
     switch self.popoverType {
     case .up:
-//        self.contentView.frame.origin.y = 0.0
         frame.origin.x = self.arrowShowPoint.x - frame.size.width * 0.5
     case .down:
-//        self.contentView.frame.origin.y = self.arrowSize.height
         frame.origin.x = self.arrowShowPoint.x - frame.size.width * 0.5
     case .left:
-//        self.contentView.frame.origin.x = 0
         frame.origin.y = self.arrowShowPoint.y - frame.size.height * 0.5
     case .right:
-//        self.contentView.frame.origin.x = 0
         frame.origin.y = self.arrowShowPoint.y - frame.size.height * 0.5
     }
 
@@ -145,14 +141,14 @@ open class Popover: UIView {
       frame.origin.y = self.arrowShowPoint.y - frame.height - self.arrowSize.height - self.upPadding
       anchorPoint = CGPoint(x: arrowPoint.x / frame.size.width, y: 1)
     case .down:
-      frame.origin.y = self.arrowShowPoint.y
+      frame.origin.y = self.arrowShowPoint.y + upPadding
       anchorPoint = CGPoint(x: arrowPoint.x / frame.size.width, y: 0)
     case .left:
         frame.origin.x = self.arrowShowPoint.x - frame.size.width - self.arrowSize.height - upPadding
 //        anchorPoint = CGPoint(x: 1, y: arrowPoint.y / frame.size.height)
         anchorPoint = CGPoint(x: 1, y: 0.5)
     case .right:
-        frame.origin.x = self.arrowShowPoint.x
+        frame.origin.x = self.arrowShowPoint.x + upPadding
         anchorPoint = CGPoint(x: 0, y: 0.5)
 //        anchorPoint = CGPoint(x: upPadding / (upPadding + self.arrowSize.height + frame.size.width), y: 0.5)
     }
@@ -169,9 +165,9 @@ open class Popover: UIView {
     case .down:
         frame.size.height += self.arrowSize.height
     case .left:
-        frame.size.width += self.arrowSize.height + upPadding
+        frame.size.width += self.arrowSize.height
     case .right:
-        frame.size.width += self.arrowSize.height + upPadding
+        frame.size.width += self.arrowSize.height
     }
     self.frame = frame
   }
@@ -397,18 +393,18 @@ open func show(_ contentView: UIView, point: CGPoint, inView: UIView, blockOverl
       arrow.addLine(to: CGPoint(x: arrowPoint.x - self.arrowSize.width * 0.5,
         y: isCornerLeftArrow() ? self.arrowSize.height + self.bounds.height : self.arrowSize.height))
     case .left:
-        arrow.move(to: CGPoint(x: arrowPoint.x, y: self.bounds.height * 0.5))
+        arrow.move(to: CGPoint(x: self.bounds.width, y: self.bounds.height * 0.5))
 //        arrow.move(to: CGPoint(x: 325, y: 497))
         arrow.addLine(
             to: CGPoint(
-                x: arrowPoint.x - self.arrowSize.height,
+                x: self.bounds.width - self.arrowSize.height,
                 y: self.bounds.height * 0.5 + self.arrowSize.width * 0.5
         ))
         
-        arrow.addLine(to: CGPoint(x:arrowPoint.x - self.arrowSize.height, y: self.bounds.height - self.cornerRadius))
+        arrow.addLine(to: CGPoint(x:self.bounds.width - self.arrowSize.height, y: self.bounds.height - self.cornerRadius))
         arrow.addArc(
             withCenter: CGPoint(
-                x: arrowPoint.x - self.arrowSize.height - self.cornerRadius,
+                x: self.bounds.width - self.arrowSize.height - self.cornerRadius,
                 y: self.bounds.height - self.cornerRadius
             ),
             radius: self.cornerRadius,
@@ -438,9 +434,9 @@ open func show(_ contentView: UIView, point: CGPoint, inView: UIView, blockOverl
             endAngle: self.radians(270),
             clockwise: true)
         
-        arrow.addLine(to: CGPoint(x: arrowPoint.x - self.arrowSize.height - self.cornerRadius, y: 0))
+        arrow.addLine(to: CGPoint(x: self.bounds.width - self.arrowSize.height - self.cornerRadius, y: 0))
         arrow.addArc(
-            withCenter: CGPoint(x: arrowPoint.x - self.arrowSize.height - self.cornerRadius,
+            withCenter: CGPoint(x: self.bounds.width - self.arrowSize.height - self.cornerRadius,
                                 y: self.cornerRadius
             ),
             radius: self.cornerRadius,
@@ -448,21 +444,21 @@ open func show(_ contentView: UIView, point: CGPoint, inView: UIView, blockOverl
             endAngle: self.radians(0),
             clockwise: true)
         
-        arrow.addLine(to: CGPoint(x: arrowPoint.x - self.arrowSize.height,
+        arrow.addLine(to: CGPoint(x: self.bounds.width - self.arrowSize.height,
                                   y: self.bounds.height * 0.5 - self.arrowSize.width * 0.5
         ))
     case .right:
-        arrow.move(to: CGPoint(x: arrowPoint.x, y: self.bounds.height * 0.5))
+        arrow.move(to: CGPoint(x: arrowPoint.x + upPadding, y: self.bounds.height * 0.5))
         arrow.addLine(
             to: CGPoint(
-                x: arrowPoint.x + self.arrowSize.height,
+                x: arrowPoint.x + upPadding + self.arrowSize.height,
                 y: self.bounds.height * 0.5 + 0.5 * self.arrowSize.width
         ))
         
-        arrow.addLine(to: CGPoint(x: arrowPoint.x + self.arrowSize.height, y: self.bounds.height - self.cornerRadius))
+        arrow.addLine(to: CGPoint(x: arrowPoint.x + upPadding + self.arrowSize.height, y: self.bounds.height - self.cornerRadius))
         arrow.addArc(
             withCenter: CGPoint(
-                x: arrowPoint.x + self.arrowSize.height + self.cornerRadius,
+                x: arrowPoint.x + upPadding + self.arrowSize.height + self.cornerRadius,
                 y: self.bounds.height - self.cornerRadius
             ),
             radius: self.cornerRadius,
@@ -471,10 +467,10 @@ open func show(_ contentView: UIView, point: CGPoint, inView: UIView, blockOverl
             clockwise: false)
         
 //        arrow.addLine(to: CGPoint(x: self.bounds.width + arrowPoint.x + self.arrowSize.height - self.cornerRadius, y: self.bounds.height))
-        arrow.addLine(to: CGPoint(x: self.bounds.width + arrowPoint.x - self.cornerRadius, y: self.bounds.height))
+        arrow.addLine(to: CGPoint(x: self.bounds.width + arrowPoint.x + upPadding - self.cornerRadius, y: self.bounds.height))
         arrow.addArc(
             withCenter: CGPoint(
-                x: self.bounds.width + arrowPoint.x - self.cornerRadius,
+                x: self.bounds.width + arrowPoint.x + upPadding - self.cornerRadius,
                 y: self.bounds.height - self.cornerRadius
             ),
             radius: self.cornerRadius,
@@ -482,10 +478,10 @@ open func show(_ contentView: UIView, point: CGPoint, inView: UIView, blockOverl
             endAngle: self.radians(0),
             clockwise: false)
         
-        arrow.addLine(to: CGPoint(x: self.bounds.width + arrowPoint.x, y: self.cornerRadius))
+        arrow.addLine(to: CGPoint(x: self.bounds.width + arrowPoint.x + upPadding, y: self.cornerRadius))
         arrow.addArc(
             withCenter: CGPoint(
-                x: self.bounds.width + arrowPoint.x - self.cornerRadius,
+                x: self.bounds.width + arrowPoint.x + upPadding - self.cornerRadius,
                 y: self.cornerRadius
             ),
             radius: self.cornerRadius,
@@ -493,9 +489,9 @@ open func show(_ contentView: UIView, point: CGPoint, inView: UIView, blockOverl
             endAngle: self.radians(-90),
             clockwise: false)
         
-        arrow.addLine(to: CGPoint(x: arrowPoint.x + self.arrowSize.height - self.cornerRadius, y: 0))
+        arrow.addLine(to: CGPoint(x: arrowPoint.x + upPadding + self.arrowSize.height - self.cornerRadius, y: 0))
         arrow.addArc(
-            withCenter: CGPoint(x: arrowPoint.x + self.arrowSize.height + self.cornerRadius,
+            withCenter: CGPoint(x: arrowPoint.x + upPadding + self.arrowSize.height + self.cornerRadius,
                                 y: self.cornerRadius
             ),
             radius: self.cornerRadius,
@@ -503,7 +499,7 @@ open func show(_ contentView: UIView, point: CGPoint, inView: UIView, blockOverl
             endAngle: self.radians(-180),
             clockwise: false)
         
-        arrow.addLine(to: CGPoint(x: arrowPoint.x + self.arrowSize.height,
+        arrow.addLine(to: CGPoint(x: arrowPoint.x + upPadding + self.arrowSize.height,
                                   y:  self.bounds.height * 0.5 - self.arrowSize.width * 0.5))
     }
 

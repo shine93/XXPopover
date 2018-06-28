@@ -23,23 +23,21 @@ class ViewController: UIViewController {
             .type(.right),
             .blackOverlayColor(UIColor(white: 0.0, alpha: 0.0)),
             .arrowSize(CGSize(width: 16, height: 8)),
-            .upPadding(4),
+            .upPadding(20),
             .color(UIColor(red: 35.0 / 255.0, green: 128.0 / 255.0, blue: 245.0 / 255.0, alpha: 1)),
             .cornerRadius(4.0),
             .animationIn(TimeInterval(0.2)),
             .sideEdge(8.0)
         ]
         
-        
-        
         blueTipPop = Popover(options: popoverOptions, showHandler: {
             
         }) {
 //            self.blueTipPop?.removeGestureRecognizer(blueTipPlacesGR)
         }
-        let blueTipPlacesGR = UITapGestureRecognizer(target: blueTipPop, action: #selector(blueTipPop?.dismiss))
-        blueTipPop?.addGestureRecognizer(blueTipPlacesGR)
-        
+//        let blueTipPlacesGR = UITapGestureRecognizer(target: blueTipPop, action: #selector(blueTipPop?.dismiss))
+//        blueTipPop?.addGestureRecognizer(blueTipPlacesGR)
+//
         
         let tipLabel = UILabel()
         tipLabel.numberOfLines = 0
