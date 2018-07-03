@@ -19,16 +19,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnL-7q-1xv">
-                                <rect key="frame" x="328" y="477" width="37" height="40"/>
+                                <rect key="frame" x="320" y="477" width="45" height="40"/>
                                 <color key="backgroundColor" red="0.46565290178571428" green="1" blue="0.95862165178571423" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="30n-bt-yjV"/>
                                 </constraints>
-                                <state key="normal" title="cliMe">
+                                <state key="normal" title="upPop">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="popShow:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GDF-oz-Svt"/>
+                                    <action selector="upPopShow:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FZ4-9r-0bK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNL-Y3-4k4">
@@ -43,20 +43,53 @@
                                     <action selector="popShow:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fy4-Qi-Wd5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QfK-eL-N8R">
+                                <rect key="frame" x="315" y="328" width="50" height="30"/>
+                                <color key="backgroundColor" red="0.63445870535714288" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="KHw-sp-yaj"/>
+                                    <constraint firstAttribute="height" constant="30" id="odJ-S6-GxK"/>
+                                </constraints>
+                                <state key="normal" title="leftPop"/>
+                                <connections>
+                                    <action selector="leftPopShow:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ceM-Ff-1Xf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UG6-5d-nFA">
+                                <rect key="frame" x="10" y="487" width="70" height="30"/>
+                                <color key="backgroundColor" red="0.17854352678571428" green="0.5" blue="0.34517299107142857" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="TyM-Kl-btM"/>
+                                    <constraint firstAttribute="height" constant="30" id="q0z-OQ-0Qm"/>
+                                </constraints>
+                                <state key="normal" title="downPop">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="downPopShow:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CRV-qr-dgD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dnL-7q-1xv" secondAttribute="bottom" constant="150" id="1b3-1X-qL0"/>
+                            <constraint firstItem="QfK-eL-N8R" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="308" id="3VD-lX-Wso"/>
                             <constraint firstItem="NNL-Y3-4k4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="53x-sO-hUC"/>
                             <constraint firstItem="NNL-Y3-4k4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="5mf-Qz-LUe"/>
+                            <constraint firstItem="UG6-5d-nFA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="6xI-Ns-pFe"/>
                             <constraint firstItem="dnL-7q-1xv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="Jah-Xe-8el"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QfK-eL-N8R" secondAttribute="trailing" constant="10" id="gaa-Fe-zm5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dnL-7q-1xv" secondAttribute="trailing" constant="10" id="ie4-9y-NKz"/>
+                            <constraint firstItem="dnL-7q-1xv" firstAttribute="bottom" secondItem="UG6-5d-nFA" secondAttribute="bottom" id="plC-pc-yxj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="clickMeBtn" destination="dnL-7q-1xv" id="Ruc-c5-LsF"/>
+                        <outlet property="downPopBtn" destination="UG6-5d-nFA" id="Gre-35-GHi"/>
+                        <outlet property="leftPopBtn" destination="QfK-eL-N8R" id="9Qb-H6-PdC"/>
                         <outlet property="rightPopBtn" destination="NNL-Y3-4k4" id="K50-F4-0Qo"/>
+                        <outlet property="rightPopToTopConstraint" destination="5mf-Qz-LUe" id="v7g-Pz-ovx"/>
+                        <outlet property="upPopBtn" destination="dnL-7q-1xv" id="80t-ZJ-KdJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
